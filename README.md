@@ -1,24 +1,7 @@
-# README
+# ratebeer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Repository for Ruby on Rails -webpalvelinohjelmointi course organized by University of Helsinki in Fall 2024.
 
-Things you may want to cover:
+## Production
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The app is hosted in fly.io and can be accessed at [https://ratebeer-prod.fly.dev/](https://ratebeer-prod.fly.dev/).
