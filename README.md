@@ -1,6 +1,6 @@
 # ratebeer
 
-Repository for Ruby on Rails -webpalvelinohjelmointi course organized by University of Helsinki in Fall 2024.
+Repository for Web-palvelinohjelmointi Ruby on Rails course organized by University of Helsinki in Fall 2024.
 
 ## Production
 
