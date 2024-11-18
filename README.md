@@ -1,6 +1,8 @@
 # ratebeer
 
-Repository for Web-palvelinohjelmointi Ruby on Rails course organized by University of Helsinki in Fall 2024.
+[![Fly Deploy](https://github.com/LeeviHalme/ratebeer/actions/workflows/fly-deploy.yml/badge.svg)](https://github.com/LeeviHalme/ratebeer/actions/workflows/fly-deploy.yml)
+
+Repository for [Web-palvelinohjelmointi Ruby on Rails](https://github.com/mluukkai/WebPalvelinohjelmointi2023/) -course organized by University of Helsinki in Fall 2024.
 
 ## Production
 
