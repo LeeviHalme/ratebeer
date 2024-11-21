@@ -1,0 +1,25 @@
+<h1>Join a Beer Club</h1>
+
+<%= form_for(@membership) do |f| %>
+  <% if @membership.errors.any? %>
+    <div id="error_explanation" style="color: red">
+      <h2><%= pluralize(@membership.errors.count, "error") %> prohibited creating membership:</h2>
+
+      <ul>
+      <% @membership.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @already_member_in_all_clubs %>
+    <p>You are already member of all beer clubs. You can create a new club <a href="<%= new_beer_club_path %>">here</a>.</p>
+  <% else %>
+  <%= f.select :beer_club_id, options_from_collection_for_select(@clubs, :id, :name, 
+  { disabled: current_user.beer_clubs.pluck(:id) }) %>
+  <%= f.submit 'Join club' %>
+  <% end %>
+  
+
+<% end %>

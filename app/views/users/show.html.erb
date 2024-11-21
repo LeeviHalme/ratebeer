@@ -1,0 +1,43 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>
+  Username:
+</h2>
+
+<p>
+  <%= @user.username %>
+</p>
+
+<p>
+  Has made <%= @user.ratings.count %> ratings, average rating <%= @user.average_rating %>
+</p>
+
+<h2>Ratings:</h2>
+
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li><%= "#{rating.to_s}" %>
+      <% if @user == current_user %>
+        <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Memberships:</h2>
+
+<ul>
+  <% @user.memberships.each do |membership| %>
+    <li>
+      <%= link_to "#{membership.beer_club.name}, #{membership.beer_club.city}", membership.beer_club %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to "Back to users", users_path %>
+  <% if current_user == @user %>
+    | <%= link_to "Edit this user", edit_user_path(@user) %> |
+      <%= link_to "Destroy this user", @user, data: {turbo_method: :delete} %>
+  <% end %>
+</div>

@@ -16,4 +16,7 @@
 .navibar {
   padding: 10px;
   background: #efefef;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
