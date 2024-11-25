@@ -11,7 +11,7 @@ gem "sprockets-rails"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :production do
@@ -72,9 +72,14 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'factory_bot_rails'
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'launchy'
+  gem 'simplecov', require: false
+  gem 'rubocop'
 end
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
