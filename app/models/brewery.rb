@@ -13,4 +13,8 @@ class Brewery < ApplicationRecord
 
     errors.add(:expiration_date, "must be between 1040 and #{Date.today.year}")
   end
+
+  def to_s
+    name.to_s
+  end
 end

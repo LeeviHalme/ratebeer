@@ -13,4 +13,24 @@ class User < ApplicationRecord
 
   validates :password, length: { minimum: 4, message: "Password must be at least 4 characters long" }
   validates :password, format: { with: /\d.*[A-Z]|[A-Z].*\d/, message: "Password must contain at least one number and one capital letter" }
+
+  def favorite_beer
+    return nil if ratings.empty?
+
+    ratings.max_by(&:score).beer
+  end
+
+  def favorite_style
+    return nil if ratings.empty?
+
+    style_ratings = ratings.group_by { |r| r.beer.style }
+    style_ratings.max_by { |_style, ratings| ratings.map(&:score).sum / ratings.count }.first
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    brewery_ratings = ratings.group_by { |r| r.beer.brewery }
+    brewery_ratings.max_by { |_brewery, ratings| ratings.map(&:score).sum / ratings.count }.first
+  end
 end
