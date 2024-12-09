@@ -30,7 +30,7 @@ describe "User" do
 
       visit user_path(user)
 
-      expect(page).to have_content "Favourite beer style: #{beer.style}"
+      expect(page).to have_content "Favourite beer style: #{beer.beer_style.name}"
       expect(page).to have_content "Favourite brewery: #{brewery.name}"
     end
   end

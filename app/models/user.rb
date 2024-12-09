@@ -23,7 +23,7 @@ class User < ApplicationRecord
   def favorite_style
     return nil if ratings.empty?
 
-    style_ratings = ratings.group_by { |r| r.beer.style }
+    style_ratings = ratings.group_by { |r| r.beer.beer_style.name }
     style_ratings.max_by { |_style, ratings| ratings.map(&:score).sum / ratings.count }.first
   end
 

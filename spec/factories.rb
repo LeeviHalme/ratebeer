@@ -5,6 +5,11 @@ FactoryBot.define do
     password_confirmation { "Foobar1" }
   end
 
+  factory :beer_style do
+    name { "Lager" }
+    description { "Example description" }
+  end
+
   factory :brewery do
     name { "anonymous" }
     year { 1900 }
@@ -12,7 +17,7 @@ FactoryBot.define do
 
   factory :beer do
     name { "anonymous" }
-    style { "Lager" }
+    beer_style # olueeseen liittyvä tyyli luodaan beer_style-tehtaalla
     brewery # olueeseen liittyvä panimo luodaan brewery-tehtaalla
   end
 

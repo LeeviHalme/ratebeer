@@ -9,6 +9,11 @@ class BeerClubsController < ApplicationController
 
   # GET /beer_clubs/1 or /beer_clubs/1.json
   def show
+    @membership = Membership.new
+    @membership.beer_club = @beer_club
+    @membership.user = current_user
+    @is_already_member = current_user.beer_clubs.include?(@beer_club)
+    @existing_membership = Membership.find_by(beer_club: @beer_club, user: current_user)
   end
 
   # GET /beer_clubs/new

@@ -1,0 +1,18 @@
+<p>
+  <strong>Name:</strong>
+  <%= @beer_style.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @beer_style.description %>
+</p>
+
+<p>
+  <strong>Beers:</strong>
+  <ul>
+    <% @beer_style.beers.each do |beer| %>
+      <li><%= link_to beer.name, beer %></li>
+    <% end %>
+  </ul>
+</p>
