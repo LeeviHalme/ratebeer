@@ -15,7 +15,7 @@ class BeermappingApi
 
     places_from_api = response.parsed_response["bmp_locations"]["location"]
     places_from_api = [places_from_api] if places_from_api.is_a?(Hash)
-    places_from_api.map do | location |
+    places_from_api.map do |location|
       Place.new(location)
     end
   end
