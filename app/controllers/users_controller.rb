@@ -47,6 +47,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1 or /users/1.json
+  def toggle_disabled
+    user = User.find(params[:id])
+    user.update_attribute :disabled, !user.disabled
+
+    new_status = user.disabled ? "closed" : "activated"
+
+    redirect_to user, notice: "User account #{new_status} successfully"
+  end
+
   # DELETE /users/1 or /users/1.json
   def destroy
     return unless current_user == @user

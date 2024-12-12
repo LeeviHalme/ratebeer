@@ -16,3 +16,10 @@
     <% end %>
   </ul>
 </p>
+
+<hr class="mt-4" />
+
+<div class="d-flex align-items-center gap-3">
+  <%= link_to "Back to beer styles", beer_styles_path %>
+  <%= edit_and_destroy_buttons(@beer_style) %>
+</div>

@@ -1,19 +1,13 @@
-<p style="color: green"><%= notice %></p>
-
 <h2>
-  Username:
+  Username: <%= @user.username %>
 </h2>
 
-<p>
-  <%= @user.username %>
+<p class="mt-3">
+  Has made <%= @user.ratings.count %> ratings, average rating <%= round @user.average_rating %>
 </p>
 
 <p>
-  Has made <%= @user.ratings.count %> ratings, average rating <%= @user.average_rating %>
-</p>
-
-<p>
-  <strong>Favourite beer style:</strong> <%= @user.favorite_style %>
+  <strong>Favourite style:</strong> <%= @user.favorite_style %>
 </p>
 
 <p>
@@ -44,6 +38,12 @@
 
 <div>
   <%= link_to "Back to users", users_path %>
+  <% if current_user && current_user.admin? %>
+    | <%= link_to @user.disabled? ? "Enable account" : "Close account",
+                  toggle_disabled_user_path(@user),
+                  class: @user.disabled? ? "btn btn-sm btn-success" : "btn btn-sm btn-danger",
+                  data: {turbo_method: "post"} %>
+  <% end %>
   <% if current_user == @user %>
     | <%= link_to "Edit this user", edit_user_path(@user) %> |
       <%= link_to "Destroy this user", @user, data: {turbo_method: :delete} %>

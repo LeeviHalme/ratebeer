@@ -1,13 +1,27 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Beers</h1>
 
-<div id="beers">
-  <% @beers.each do |beer| %>
-    <%= render beer %>
-  <% end %>
-</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Style</th>
+      <th>Brewery</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @beers.each do |beer| %>
+      <tr>
+        <td><%= link_to beer.name, beer %></td>
+        <td><%= link_to beer.beer_style.name, beer.beer_style %></td>
+        <td><%= link_to beer.brewery.name, beer.brewery %></td>
+        <td><%= round beer.average_rating %></td>
+      </tr>
+    <% end %>
+</table>
+
+<div class="d-flex align-items-center gap-3">
+<%= link_to('New Beer', new_beer_path, class:'btn btn-primary') if current_user %>
 
 <%= link_to 'List of breweries', breweries_path %>
-
-<%= link_to('New Beer', new_beer_path) if current_user %>
+</div>

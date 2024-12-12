@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <div id="<%= dom_id @beer %>">
   <p>
     <strong>Name:</strong>
@@ -8,7 +6,7 @@
 
   <p>
     <strong>Style:</strong>
-    <%= @beer.beer_style.name %>
+    <%= link_to @beer.beer_style.name, @beer.beer_style %>
   </p>
 
   <p>
@@ -22,7 +20,7 @@
   </p>
 <% else %>
   <p>
-    Beer has <%= pluralize(@beer.ratings.count, 'rating') %> with an average of <%= @beer.average_rating %>.
+    Beer has <%= pluralize(@beer.ratings.count, 'rating') %> with an average of <%= round @beer.average_rating %>.
   </p>
 <% end %>
 
@@ -35,11 +33,13 @@
   <%= form_with(model: @rating) do |form| %>
     <%= form.hidden_field :beer_id %>
     score: <%= form.number_field :score %>
-    <%= form.submit "Create rating" %>
+    <%= form.submit "Create rating", class:"btn btn-primary btn-sm" %>
   <% end %>
+  
+  <hr class="mt-4" />
 
-  <div>
-    <%= link_to "Edit this beer", edit_beer_path(@beer) %>
-    <%= button_to "Destroy this beer", @beer, method: :delete %>
+  <div class="d-flex align-items-center gap-3">
+    <%= link_to "Back to beers", beers_path %>
+    <%= edit_and_destroy_buttons(@beer) %>
   </div>
 <% end %>

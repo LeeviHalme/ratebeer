@@ -1,0 +1,27 @@
+<%= form_with(model: beer_style) do |form| %>
+  <% if beer_style.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(beer_style.errors.count, "error") %> prohibited this beer_style from being saved:</h2>
+
+      <ul>
+        <% beer_style.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

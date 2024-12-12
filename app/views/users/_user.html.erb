@@ -1,7 +1,23 @@
 <div id="<%= dom_id user %>">
+  <h3>
+    Username: <%= user.username %>
+  </h3>
+
+  <% if current_user.admin? && user.disabled? %>
+    <p class="mb-2">
+      <span class="badge bg-danger">Closed</span>
+    </p>
+  <% end %>
+
   <p>
-    <strong>Username:</strong>
-    <%= user.username %>
+    Has made <%= user.ratings.count %> ratings, average rating <%= round user.average_rating %>
   </p>
 
+  <p>
+    <strong>Favourite style:</strong> <%= user.favorite_style %>
+  </p>
+
+  <p>
+    <strong>Favourite brewery:</strong> <%= user.favorite_brewery %>
+  </p>
 </div>

@@ -33,4 +33,12 @@ class User < ApplicationRecord
     brewery_ratings = ratings.group_by { |r| r.beer.brewery }
     brewery_ratings.max_by { |_brewery, ratings| ratings.map(&:score).sum / ratings.count }.first
   end
+
+  def self.most_active(n_elements)
+    User.all.sort_by { |u| -u.ratings.count }.take(n_elements)
+  end
+
+  def to_s
+    username
+  end
 end

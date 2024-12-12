@@ -1,6 +1,9 @@
-<p style="color: green"><%= notice %></p>
-
-<h2><%= @brewery.name %></h2>
+ <h2>
+  <%= @brewery.name %>
+  <% if not @brewery.active  %>
+    <span class="badge badge-sm bg-secondary">retired</span>
+  <% end %>
+</h2>
 
 <p>
   <i>
@@ -25,13 +28,21 @@
   </p>
 <% else %>
   <p>
-    Brewery has <%= pluralize(@brewery.ratings.count, 'rating') %> with an average of <%= @brewery.average_rating %>.
+    Brewery has <%= pluralize(@brewery.ratings.count, 'rating') %> with an average of <%= round @brewery.average_rating %>.
   </p>
 <% end %>
 
-<div>
-  <%= link_to("Edit this brewery", edit_brewery_path(@brewery)) if current_user %> |
-  <%= link_to "Back to breweries", breweries_path %>
+<div class="my-3">
+  <%= link_to "Toggle activity",
+              toggle_activity_brewery_path(@brewery.id),
+              data: { turbo_method: "post" },
+              class: "btn btn-info btn-sm" %>
+</div>
 
-  <%= button_to("Destroy this brewery", @brewery, method: :delete) if current_user %>
+
+<hr class="mt-4" />
+
+<div class="d-flex align-items-center gap-3">
+  <%= link_to "Back to breweries", breweries_path %>
+  <%= edit_and_destroy_buttons(@brewery) %>
 </div>

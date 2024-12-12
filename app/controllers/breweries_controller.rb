@@ -4,7 +4,8 @@ class BreweriesController < ApplicationController
 
   # GET /breweries or /breweries.json
   def index
-    @breweries = Brewery.all
+    @active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
   end
 
   # GET /breweries/1 or /breweries/1.json
@@ -48,8 +49,23 @@ class BreweriesController < ApplicationController
     end
   end
 
+  # POST /breweries/1/toggle_activity
+  def toggle_activity
+    brewery = Brewery.find(params[:id])
+    brewery.update_attribute :active, !brewery.active
+
+    new_status = brewery.active? ? "active" : "retired"
+
+    redirect_to brewery, notice: "Brewery activity status changed to #{new_status}"
+  end
+
   # DELETE /breweries/1 or /breweries/1.json
   def destroy
+    if !current_user.admin?
+      redirect_to brewery_path(@brewery), notice: "Only admins can delete breweries"
+      return
+    end
+
     @brewery.destroy
 
     respond_to do |format|
@@ -67,6 +83,6 @@ class BreweriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def brewery_params
-    params.require(:brewery).permit(:name, :year)
+    params.require(:brewery).permit(:name, :year, :active)
   end
 end

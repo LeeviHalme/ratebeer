@@ -1,14 +1,27 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Breweries</h1>
-<p>Number of breweries: <%= @breweries.count %></p>
+
+<h2>Active</h2>
+
+<p>Number of active breweries: <%= @active_breweries.count %></p>
 
 <div id="breweries">
-  <% @breweries.each do |brewery| %>
+  <% @active_breweries.each do |brewery| %>
     <%= render brewery %>
   <% end %>
 </div>
 
-<%= link_to 'List of beers', beers_path %>
+<h2>Retired</h2>
 
-<%= link_to("New brewery", new_brewery_path) if current_user %>
+<p>Number of retired breweries: <%= @retired_breweries.count %></p>
+
+<div id="retired_breweries">
+  <% @retired_breweries.each do |brewery| %>
+    <%= render brewery %>
+  <% end %>
+</div>
+
+<div class="d-flex align-items-center gap-3">
+<%= link_to("New brewery", new_brewery_path, class:'btn btn-primary') if current_user %>
+
+<%= link_to 'List of beers', beers_path %>
+</div>
